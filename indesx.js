@@ -139,7 +139,80 @@
 // Percentage < 40% : Grade F
 
 
+ let array = [1,2,3,4,'s',"surya"];
+ console.log(array);
+ console.log(array[0]);
+ console.log(array.concat(array));
+ console.log(array.indexOf(1));
+ array[6]="chennai";
+ array.push(90)
+ array.push(91)
+ array.push(92)
+ array.pop()
+ array.unshift("one")
+ array.unshift("Two")
+ array.shift()
+ array.splice(2,1,"KIA")
+ console.log(array);
+
+multiArray = [[1,2,3,4,5,6],[7,8,9,9,[5,6,7,8,'s',[0,9,7,'t']]]]
+console.log(multiArray[1][4][5][3]);
+
+
+const Array = [];
+Array.push(90);
+console.log(Array);
+
+let obj ={
+    Name :"Suryaraj",
+    age:12,
+    city:"Erode",
+    brother:{
+        Name:"Karthick",
+        age :10
+    }
+}
+console.log(obj.brother.Name);
+
+ArryaOfObject =[
+    {Name:"Suryraj",age:21},
+    {Name:"Suryraj",age:22},
+    {Name:"Suryraj",age:23},
+    {Name:"Suryraj",age:24},
+    {Name:"Suryraj",age:25},
+]
+console.log(ArryaOfObject[3].age);
+let ayy=['a','b','c','d','e'];
+
+for(let i=0;i<ayy.length;i++){
+    console.log(ayy[i]);   
+}
+
+let u =5
+let r=10
+while (u<10) {
+    u++;
+    console.log(u);   }
+
+do{
+    r++;
+    console.log(r);
+    
+}while(r<15)
+
+ayy.forEach((r)=>{console.log(r);})
+ayy.map((y)=>{console.log(y);})
+
+for(let i of ayy){
+    console.log(i);    
+}
+
+
+
+
+
  
+
 
 
 
