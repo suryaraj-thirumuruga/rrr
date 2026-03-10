@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="one" style="color: red;" class="">chennai</h1>
+    <h1 class="one">ii</h1>
+    <h1 class="one">jj</h1>
+    <h2 ></h2>
+    <button onclick="Home()">click me</button>
+<script>
+    function Home(){
+        alert('welcome....')
+    }
+
+
+        let name = document.getElementById("one");
+         console.log(name.getAttributeNames()); 
+         name.setAttribute('style',"color:blue");
+         name.classList.add('surya')
+         name.classList.remove('surya')
+         
+        
+        // let name = document.getElementsByClassName("one")[1];
+        // let name = document.getElementsByTagName('h2')[0]
+        // let name =document.querySelectorAll("h2");
+
+        // console.log(name);
+        // name.innerHTML="welcome.";
+        // console.log(name.textContent);
+
+    </script>
+</body>
+</html>
+
+<style>
+    .surya{
+        background-color: yellow;
+    }
+</style>
