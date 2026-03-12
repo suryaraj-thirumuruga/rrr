@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- document Event  -->
+<body onload="Open()" onunload="Close()"  onresize="Resized()" onscroll="Scr()">
+
+    <!-- Clipborad Event -->
+    <input type="text" name="" id="" value="One" oncopy="Cpy()">
+    <input type="text" name="" id="" value="Two" oncut="Ct()">
+    <input type="text" name="" id="" onpaste="Pst()">
+
+    <!-- Mouse Event -->
+    <p onmousedown="MouseDown()" 
+    onmouseenter="MouseEnter()"
+    onmouseleave="MouseLeave()"
+    onmousemove="MouseMOve()"
+    onmouseout="MouseOut()" 
+    onmouseover="MouseOver()" 
+    onmouseup="MouseUp()" 
+    >Lorem ipsum dolor sit.</p>
+
+    <!-- KeyBordEvent -->
+     <input type="text" name="" id="" 
+     onkeydown="KeyDown()"
+     onkeyup="KeyUp()" 
+     onkeypress="KeyPress()">
+
+<h2>forn</h2>
+     <form onsubmit="Sub()" onreset="Rest()">
+        <input type="text" onchange="Ch()" onfocus="Fu()" onblur="Bl()" id="form">
+        <input type="submit">
+        <input type="reset">
+     </form>
+
+
+   <script>
+
+    let y = document.getElementById("form");
+    
+    function Fu(){
+        y.style.background="yellow";    }
+    function Bl(){
+        y.style.background="red"
+    }
+
+function KeyDown(){
+    console.log("KeyDown");    
+}
+function KeyPress(){
+    console.log("KeyPress");    
+}
+function KeyUp(){
+    console.log("KeyUp");    
+}
+
+function MouseDown(){
+    console.log("Down..");  }
+function MouseMOve(){
+    console.log("Move");
+    
+}
+function MouseEnter(){
+    console.log("MouseEnter");   
+}
+function MouseLeave(){
+    console.log("Leave");    
+}
+function MouseOut(){
+    console.log("Out");    
+}
+function MouseOver(){
+    console.log("Over");
+      
+}
+function MouseUp(){
+    console.log("Mouse uop");
+    
+}
+
+   </script>
+
+</body>
+</html>
