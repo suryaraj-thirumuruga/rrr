@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <form id="form">
+            <input type="text" id="user">
+            <input type="password" id="pass">
+            <input type="submit">  </form>        
+
+        <script>
+            let form = document.getElementById('form');
+            let user = document.getElementById('user');
+            let pass = document.getElementById('pass');
+
+            form.addEventListener("submit",function(e){
+                e.preventDefault();
+                if(user.value==""){
+                    alert("Name Error..")
+                    user.style.borderColor="red";
+                }
+                else if(pass.value==""){
+                    alert("Password Error")
+                }
+                else{
+                    console.log("NAme :" +user.value);                    
+                    console.log("Pass :" +pass.value);                    
+                }
+                 form.reset()
+                }
+               
+            )
+
+
+        </script>
+
+</body>
+</html>
