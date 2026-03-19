@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>RegisterForm</h1>
+
+    <form onsubmit="return SubmitForm(event)">
+
+        <input type="text" id="UserName"><br>
+        <span id="NameError" style="color: red;"></span> <br>
+
+        <input type="password" id="Pass"><br>
+        <span id="PassError" style="color: red;"></span> <br>
+
+        <input type="password" id="ConfirmPass"><br>
+        <span id="ConfirmPassError" style="color: red;"></span>
+        
+        <input type="submit">       
+        
+    </form>
+
+    <p>
+      <a href="./SingIn.html">Sing IN</a>
+    </p>
+    <script>
+
+   
+function SubmitForm(e){
+  e.preventDefault();
+
+     let username = document.getElementById('UserName');
+      let Password = document.getElementById("Pass");
+      let ConfirmPass = document.getElementById("ConfirmPass");
+
+      let NameError = document.getElementById("NameError");
+      let PassError = document.getElementById('PassError');
+      let ConfirmPassError = document.getElementById('ConfirmPassError');
+
+      NameError.innerText="";
+      PassError.innerText="";
+      ConfirmPassError.innerText="";
+
+      let valid = true;
+
+      let passwordPattern ="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+
+
+      if(username.value==""){
+        NameError.innerHTML="Name Error";
+        valid=false;
+      }
+
+      if(Password.value==""){
+        PassError.innerText="Pass empty";
+        valid=false;
+      }
+      else if(Password.value.length<6){
+          PassError.innerText="Pass Must be 6+";
+        valid=false;
+      }
+      
+
+      if(Password.value!=ConfirmPass.value){
+        ConfirmPassError.innerText="Not Match";
+        valid=false;
+      }
+
+      if(valid){
+        let data ={
+          name :username.value,
+          pass : Password.value,
+        }
+        localStorage.setItem("UserData",JSON.stringify(data));
+        alert('Register succes')
+
+        e.target.reset();
+
+      }
+
+      return valid;
+
+
+
+}
+
+
+
+      
+        
+      
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<style>
+  .error { color: red; }
+</style>
+</head>
+<body>
+ 
+<form onsubmit="return SubmitForm(event)">
+  <input type="text" id="UserName" placeholder="Username">
+  <span id="NameError" class="error"></span><br>
+
+  <input type="password" id="Pass" placeholder="Password">
+  <span id="PassError" class="error"></span><br>
+
+  <input type="password" id="confirmPassword" placeholder="Confirm Password">
+  <span id="confirmPassError" class="error"></span><br> 
+  
+  <input type="submit" value="Submit">
+
+  <script>
+   
+    function SubmitForm(e) {
+      
+      e.preventDefault();
+
+      // Get input elements and their trimmed values
+      let userNameInput = document.getElementById('UserName');
+      let passInput = document.getElementById('Pass');
+      let confirmInput = document.getElementById('confirmPassword');
+
+      let userName = userNameInput.value.trim();
+      let pass = passInput.value;
+      let confirmPass = confirmInput.value;
+
+      // Get error span elements
+      let NameError = document.getElementById('NameError');
+      let PassError = document.getElementById("PassError");
+      let confirmPassError = document.getElementById('confirmPassError'); // Corrected ID
+
+      // Clear previous error messages
+      NameError.innerText = "";
+      PassError.innerText = "";
+      confirmPassError.innerText = "";
+
+      let valid = true;
+
+      // Validate Username
+      if (userName === "") {
+        NameError.innerText = "Username cannot be empty";
+        valid = false;
+      }
+
+      // Validate Password
+      if (pass === "") {
+        PassError.innerText = "Password cannot be empty";
+        valid = false;
+      } else if (pass.length < 6) {
+        PassError.innerText = "Password must be at least 6 characters";
+        valid = false;
+      }
+
+      // Validate Confirm Password
+      if (confirmPass === "") {
+        confirmPassError.innerText = "Please confirm your password";
+        valid = false;
+      } else if (pass !== confirmPass) {
+        confirmPassError.innerText = "Passwords do not match";
+        valid = false;
+      }
+      
+      // Optional: If all is valid, you can submit the form programmatically or show a success message
+      if (valid) {
+        alert("Form submitted successfully!");
+        // If you want the form to actually submit to a backend after validation, you can do:
+        // e.target.submit(); 
+      }
+
+      // Return 'false' to the 'onsubmit' event if validation failed (prevents default browser submission)
+      return valid;
+    }
+  </script>
+</form>
+</body>
+</html>

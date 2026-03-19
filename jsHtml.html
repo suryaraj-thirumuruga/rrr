@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <input type="text" id="One">
+        <button onclick="Two()">ADD</button>
+        <ul id="three">
+        </ul>
+
+<script>
+        let task =[];
+            let a =document.getElementById("One");
+            let b = a.value;
+             
+            let c=document.getElementById("three");
+
+            function Two(){
+            task.push(b);
+                
+                a.value="";
+            }
+
+            function Display(){               
+
+                task.forEach((y1)=>{
+                     let y = document.createElement("li");
+                     y.textContext=y1
+                     a.appendChild(y)
+                })
+            }
+</script>
+
+</body>
+</html>

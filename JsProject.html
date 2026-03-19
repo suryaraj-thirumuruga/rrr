@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Todo</title>
+</head>
+<body>
+
+<h2>Todo List</h2>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+
+<ul id="taskList"></ul>
+
+<script>
+
+let tasks = [];
+
+function addTask() {
+
+  let input = document.getElementById("taskInput");
+  let value = input.value;
+
+  if(value === "") return;
+
+  // add value to array
+  tasks.push(value);
+
+  // clear input
+  input.value = "";
+
+  // display list
+  displayTasks();
+}
+
+function displayTasks(){
+
+  let list = document.getElementById("taskList");
+  list.innerHTML = "";
+
+  // iterate array
+  tasks.forEach(function(task){
+
+    let li = document.createElement("li");
+    li.textContent = task;
+
+    list.appendChild(li);
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>
