@@ -3,97 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
 </head>
 <body>
-
-    <h1>RegisterForm</h1>
-
-    <form onsubmit="return SubmitForm(event)">
-
+    <h1>Register Form</h1>
+    <form id="regForm" onsubmit="return SubmitForm(event)">
+        <label>Username:</label><br>
         <input type="text" id="UserName"><br>
-        <span id="NameError" style="color: red;"></span> <br>
+        <span id="NameError" style="color: red;"></span><br>
 
+        <label>Password:</label><br>
         <input type="password" id="Pass"><br>
-        <span id="PassError" style="color: red;"></span> <br>
+        <span id="PassError" style="color: red;"></span><br>
 
+        <label>Confirm Password:</label><br>
         <input type="password" id="ConfirmPass"><br>
-        <span id="ConfirmPassError" style="color: red;"></span>
+        <span id="ConfirmPassError" style="color: red;"></span><br>
         
-        <input type="submit">       
-        
+        <input type="submit" value="Register">       
     </form>
 
-    <p>
-      <a href="./SingIn.html">Sing IN</a>
-    </p>
+    <p><a href="./SignIn.html">Sign IN</a></p>
+
     <script>
+        // Make sure "users" is the resource name in your MockAPI dashboard
+        let Api = "https://69bd57932bc2a25b22ae5258.mockapi.io/api";
 
-   
-function SubmitForm(e){
-  e.preventDefault();
+        function SubmitForm(e) {
+            e.preventDefault();
 
-     let username = document.getElementById('UserName');
-      let Password = document.getElementById("Pass");
-      let ConfirmPass = document.getElementById("ConfirmPass");
+            let username = document.getElementById('UserName');
+            let Password = document.getElementById("Pass");
+            let ConfirmPass = document.getElementById("ConfirmPass");
+            let NameError = document.getElementById("NameError");
+            let PassError = document.getElementById('PassError');
+            let ConfirmPassError = document.getElementById('ConfirmPassError');
 
-      let NameError = document.getElementById("NameError");
-      let PassError = document.getElementById('PassError');
-      let ConfirmPassError = document.getElementById('ConfirmPassError');
+            // Reset errors
+            NameError.innerText = "";
+            PassError.innerText = "";
+            ConfirmPassError.innerText = "";
 
-      NameError.innerText="";
-      PassError.innerText="";
-      ConfirmPassError.innerText="";
+            let valid = true;
 
-      let valid = true;
+            if (username.value.trim() === "") {
+                NameError.innerText = "Name is required";
+                valid = false;
+            }
+            if (Password.value.length < 6) {
+                PassError.innerText = "Password must be 6+ characters";
+                valid = false;
+            }
+            if (Password.value !== ConfirmPass.value) {
+                ConfirmPassError.innerText = "Passwords do not match";
+                valid = false;
+            }
 
-      let passwordPattern ="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
-
-
-      if(username.value==""){
-        NameError.innerHTML="Name Error";
-        valid=false;
-      }
-
-      if(Password.value==""){
-        PassError.innerText="Pass empty";
-        valid=false;
-      }
-      else if(Password.value.length<6){
-          PassError.innerText="Pass Must be 6+";
-        valid=false;
-      }
-      
-
-      if(Password.value!=ConfirmPass.value){
-        ConfirmPassError.innerText="Not Match";
-        valid=false;
-      }
-
-      if(valid){
-        let data ={
-          name :username.value,
-          pass : Password.value,
-        }
-        localStorage.setItem("UserData",JSON.stringify(data));
-        alert('Register succes')
-
-        e.target.reset();
-
-      }
-
-      return valid;
-
-
-
-}
-
-
-
-      
-        
-      
+            if (valid) {
+                let data = {
+                    name: username.value,
+                    pass: Password.value
+                };
+                
+                fetch(Api,{
+                  method:"POST",
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data)
+                }).then((res)=>{
+                  if(res.ok){
+                    alert("rester sucess")
+                  }
+                  else{
+                    alert("error")
+                  }
+                }).catch(err => console.log("Network error:", err));
+            return false;
+        }}
     </script>
-    
 </body>
 </html>

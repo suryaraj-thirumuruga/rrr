@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <h1>Sign In</h1>
+<form onsubmit="return CheckLogin(event)">
+    <input type="text" id="LoginName" placeholder="Username"><br><br>
+
+     <input type="password" id="LoginPass" placeholder="Password"><br>
+
+     <input type="submit" value="Login">
+</form>
+
+<p>
+    <a href="./FormValiation.html">Register</a>
+</p>
+
+
+
+<script>
+
+function CheckLogin(e){
+    e.preventDefault();
+
+    let a = document.getElementById('LoginName');
+    let b = document.getElementById('LoginPass');
+
+    let localStore = localStorage.getItem('UserData')
+
+    if(localStore){
+        let store = JSON.parse(localStore);
+
+        if(a.value==store.name && b.value == store.pass){
+            alert("login Success");
+            window.location.href='index.html'
+            e.target.reset();
+        }
+        else{
+            alert("user nae pass incorrect")
+        }
+    }
+    else{
+        alert("register first No user found")
+    }
+
+   
+
+    return false; 
+}
+
+
+
+
+
+
+ 
+
+
+</script>
+    
+</body>
+</html>
