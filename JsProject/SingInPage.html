@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return SIngINFOrm(event)">
+        <input type="text" id="username">
+        <br><br>
+        <input type="password" id="password"><br><br>
+
+        <input type="submit">
+    </form>
+
+
+
+    <script>
+
+        let name = document.getElementById('username');
+        let pass = document.getElementById('password');
+
+        function SIngINFOrm(e){
+            e.preventDefault();
+
+            let data = "https://69bd57932bc2a25b22ae5258.mockapi.io/api";
+
+            fetch(data)
+            .then((res)=>{res.json()})
+            .then((users)=>{
+                let user = users.find((u)=>{
+                    
+                })
+            })
+
+
+        }
+    </script>
+</body>
+</html>

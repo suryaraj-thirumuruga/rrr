@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+
+    <style>
+        span{
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<form onsubmit="return FormRegister(event)">
+    
+    <input type="text" id="fName" placeholder="fName"> <br>
+    <span id="fNameError"></span> <br><br>
+
+    <input type="text" id="userName" placeholder="userName"><br>
+    <span id="userNameError"></span> <br><br>
+
+    <input type="password" id="Pass" placeholder="password"><br>
+    <span id="passwordError"></span><br><br>
+
+    <input type="password" id="Cpass" placeholder="ConfirmPassword"><br>
+    <span id="CpassError"></span>
+
+    <br><br>
+
+    <input type="submit" value="Register">
+</form>
+
+<p>
+    <a href="./SingInPage.html">SING IN</a>
+</p>
+
+<script>
+
+let fname = document.getElementById('fName');
+let userName = document.getElementById('userName');
+let password = document.getElementById("Pass");
+let cPass = document.getElementById('Cpass');
+
+let fNameError = document.getElementById('fNameError');
+let userNameError = document.getElementById('userNameError');
+let passwordError = document.getElementById('passwordError');
+let CpassError = document.getElementById('CpassError');
+
+function FormRegister(e){
+    e.preventDefault();
+
+    let valid = true;
+
+    // clear errors
+    fNameError.innerText="";
+    userNameError.innerText="";
+    passwordError.innerText="";
+    CpassError.innerText="";
+
+    // Name validation
+    if(fname.value.trim() === ''){
+        fNameError.innerText="Name is required";
+        valid = false;
+    }
+
+    // Username validation
+    let userNamePattern = /^[a-zA-Z0-9@]+$/;
+
+    if(userName.value.trim() === ""){
+        userNameError.innerText="Username is required";
+        valid = false;
+    }
+    else if(!userNamePattern.test(userName.value)){
+        userNameError.innerText="Only letters, numbers, @ allowed";
+        valid = false;
+    }
+
+    // Password validation
+    let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/;
+
+    if(password.value === ""){
+        passwordError.innerText="Password is required";
+        valid = false;
+    }
+    else if(password.value.length < 6){
+        passwordError.innerText="Must be at least 6 characters";
+        valid = false;
+    }
+    else if(!passwordPattern.test(password.value)){
+        passwordError.innerText="Must include A-Z, a-z, number & special char";
+        valid = false;
+    }
+
+    // Confirm password
+    if(password.value !== cPass.value){
+        CpassError.innerText="Passwords do not match";
+        valid = false;
+    }
+
+    // If all valid
+    if(valid){
+        let data = {
+            name: fname.value,
+            username: userName.value,
+            password: password.value
+        };
+        alert("Registered Successfully ");
+
+        let Api = "https://69bd57932bc2a25b22ae5258.mockapi.io/api";
+
+        fetch(Api,{
+            method:"POST",
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(data)
+        })
+        .then((res)=>{
+            if(res.ok){
+                alert('register success');
+            }
+            else{
+                alert("Something went wrong")
+            }
+        }).catch((err)=>{"network Error",err})
+
+        // reset form
+        document.querySelector("form").reset();
+    }
+
+    return valid;
+}
+
+// Clear errors on focus
+fname.addEventListener('focus', () => fNameError.innerText="");
+userName.addEventListener('focus', () => userNameError.innerText="");
+password.addEventListener('focus', () => passwordError.innerText="");
+cPass.addEventListener('focus', () => CpassError.innerText="");
+
+</script>
+
+</body>
+</html>
