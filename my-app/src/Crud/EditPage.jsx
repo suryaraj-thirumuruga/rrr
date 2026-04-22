@@ -1,37 +1,42 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { api } from './Api'
+import { useNavigate } from 'react-router-dom'
 
-export default function EditData() {
-    const [Name,setName]=useState()
-    const [Pass,setPass]=useState()
-    const [id,setID]=useState(0)
+export default function Create() {
+    const [Name,setName]=useState('')
+    const [Pass,setPass]=useState('')
+    const [id,setId]=useState(0)
 
     useEffect(()=>{
-        setID(localStorage.getItem('id'))
+        setId(localStorage.getItem('id'))
         setName(localStorage.getItem('Name'))
         setPass(localStorage.getItem('Pass'))
     },[])
 
+    const navi = useNavigate('')
     function handle(e){
         e.preventDefault()
 
         if(Name==''||Pass==""){
-            alert("Name And Pass Error")
-        }
+            alert("Name And Pass Error")        }
         else{
             console.log(Pass,Name);
-            axios.post(api,{
-                UserName:Name,
-                UserPass:Pass
-            })
+            
+            axios.put(`${api}/${id}`,{UserName:Name,UserPass:Pass})
+            // axios.post(api,{
+            //     UserName:Name,
+            //     UserPass:Pass
+            // })
             setName('')
-            setPass('')            
+            setPass('')  
+            navi('/')
+            localStorage.clear()          
         }
     }
   return (
     <div>
-        <h1>Update DAta</h1>
+        <h1>Upadte DAta</h1>
 
         <form onSubmit={handle}>
             <input type="text"

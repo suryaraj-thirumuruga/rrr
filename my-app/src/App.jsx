@@ -36,28 +36,25 @@
 //   )
 // }
 import React from 'react'
-import Create from './Crud/Create'
-import Read from './Crud/Read'
-import EditData from './Crud/EditPage'
-import {Route, Routes } from 'react-router-dom'
- 
- 
+import Create from './crud1/Create'
+import Read from './crud1/Read'
+import {  Route, Routes } from 'react-router-dom'
+import EditData from './crud1/Edit'
 
 export default function App() {
   return (
     <div>
-     
-   <center>
-     <Routes>
-      <Route path='/'  element={<Read/>}/>
-      <Route path='/create' element={<Create/>}/>
-      <Route path='/edit' element={<EditData/>}/>
-    </Routes> 
-   </center>
-    
-   
-   
+      <center>
+      
+       <Routes>
+        <Route path='/' element={<Read/>}/>
+        <Route path='/new' element={<Create/>}/>
+        <Route path='/edit' element={<EditData/>}/>
 
+       </Routes>
+  
+      </center>
+      
     </div>
   )
 }
